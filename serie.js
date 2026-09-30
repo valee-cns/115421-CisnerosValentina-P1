@@ -29,22 +29,26 @@ class Serie{
             <button class="guardar">Guardar</button>`;
 
         serieDiv.classList.add('serie');
+        const botonGuardar = serieDiv.querySelector(".guardar");
+        botonGuardar.addEventListener("click", () => {
+            Serie.guardarSerie(this);
+        });
         return serieDiv;
     }
 
     static guardarSerie(serie){
-        let sereiesGuardadas = JSON.parse(localStorage.getItem("sereiesGuardadas"));
+        let seriesGuardadas = JSON.parse(localStorage.getItem("seriesGuardadas"));
 
-        if(sereiesGuardadas === null){
-            sereiesGuardadas = [];
+        if(seriesGuardadas === null){
+            seriesGuardadas = [];
         }
 
-        const repetidas = sereiesGuardadas.some(sereiesGuardadas => sereiesGuardadas.id === serie.id);
+        const repetidas = seriesGuardadas.some(seriesGuardadas => seriesGuardadas.id === serie.id);
 
         if(!repetidas){
-            sereiesGuardadas.push(serie);
+            seriesGuardadas.push(serie);
 
-            localStorage.setItem("sereiesGuardadas", JSON.stringify(sereiesGuardadas));
+            localStorage.setItem("seriesGuardadas", JSON.stringify(seriesGuardadas));
         }
     }
 }
