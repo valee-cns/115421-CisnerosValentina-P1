@@ -23,9 +23,28 @@ class Serie{
             <p>Nombre: ${this.name}</p>
             <p>Lenguaje: ${this.language}</p>
             <p>Género: ${this.generes}</p>
-            <img src="${this.image}" alt="${this.name}" class="serie-img"/>`;
+            <a href="${this.url}" target="_blank">
+            <img src="${this.image}" alt="${this.name}" class="serie-img"/>
+            </a>
+            <button class="guardar">Guardar</button>`;
 
         serieDiv.classList.add('serie');
         return serieDiv;
+    }
+
+    static guardarSerie(serie){
+        let sereiesGuardadas = JSON.parse(localStorage.getItem("sereiesGuardadas"));
+
+        if(sereiesGuardadas === null){
+            sereiesGuardadas = [];
+        }
+
+        const repetidas = sereiesGuardadas.some(sereiesGuardadas => sereiesGuardadas.id === serie.id);
+
+        if(!repetidas){
+            sereiesGuardadas.push(serie);
+
+            localStorage.setItem("sereiesGuardadas", JSON.stringify(sereiesGuardadas));
+        }
     }
 }
