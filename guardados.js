@@ -23,4 +23,17 @@ function mostrarSeries(){
     }
 }
 
+const btnOrdenarAZ = document.getElementById("ordenarAZ");
+const btnOrdenarZA = document.getElementById("ordenarZA");
+
+btnOrdenarAZ.addEventListener("click", function(){
+    seriesGuardadas.sort((a, b) => a.name.localeCompare(b.name));
+    mostrarSeries();
+});
+
+btnOrdenarZA.addEventListener("click", function(){
+    seriesGuardadas.sort((a, b) => b.name.localeCompare(a.name));
+    mostrarSeries();
+});
+
 mostrarSeries();
